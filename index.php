@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<link rel="stylesheet" href="file.css">
+		<link rel="stylesheet" href="css/form.css">
 		<script src="js/SWValidator.js"></script>
 		<title>Form HTML5 & CSS3</title>
 	</head>
