@@ -4,8 +4,8 @@
 	Surame: <input type="text"name="surname"  onchange="SWLetters(this,'valid','novalid',1,'id501',0,'','',0)" />
 	<span id="id501"></span><br />
 	Nick: <input type="text" name="nick" onchange="SWAlphanumeric(this)" /><br />
-	Password: <input type="text" name="pass" onchange="SWPassword(this)" /><br />
-	Re-password: <input type="text" name="repass" onchange="SWRePassword(this)" /><br />
+	Password: <input type="password" name="pass" onchange="SWPassword(this)" /><br />
+	Re-password: <input type="password" name="repass" onchange="SWRePassword(this)" /><br />
 	Email: <input type="text" name="email" onchange="SWEmail(this)" /><br />
 
 	<input type="submit" value="Submit" />
