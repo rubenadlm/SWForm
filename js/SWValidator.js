@@ -33,54 +33,165 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGE.*/
 
 
-/*Style for valid*/
+/*Image for valid*/
 var swValidImage = '<img src="img/tick.png" alt="ok" />';
 
-/*Style for no valid*/
+/*Image for no valid*/
 var swNoValidImage = '<img src="img/wrong.gif" alt="wrong" />';
 
 /*Regular Expressions*/
-var swRegExAlphanumeric = /^[a-zA-Z0-9]+$/;
-var swRegExEmail =  /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+var swRegExPassword = /^[a-zA-Z0-9]+$/;
 
 /* Custom Expressions -- Template Custom Regular Expresions
-var swRegExCustom1 =/^[a]+$/;
 
-function SWCustom1(val,inputClassValid,inputClassNoValid,image,imageId,msgId,msgClassValid,msgClassNoValid,msgTextValid,msgTextNoValid)
+function SWCustom1(val,sizeMin,sizeMax,inputClassValid,inputClassNoValid,imageId,image,msgId,msgClassValid,msgClassNoValid,msgTextValid,msgTextNoValid,ajaxArray)
 {
-	if (swRegExLetters.test(val.value)) {
-		if(inputClassValid != "")
-			val.className = inputClassValid;
-		if(image == 1 || image == 3)
-			document.getElementById(imageId).innerHTML = swValidImage;
-		if(msgClassValid != "")
-			document.getElementById(msgId).className = msgClassValid;
-		if(msgTextValid != "")
-			document.getElementById(msgId).innerHTML = msgTextValid;
-		val.correct = true;
+	regExCustom = /^[a-zA-Z]+$/;
+	if ((regExCustom.test(val.value) && (sizeMin == null || val.value.length >= sizeMin) && (sizeMax == null || val.value.length <= sizeMax)) || (sizeMin == 0 && val.value.length == 0)) {
+		if(ajaxArray == null || (ajaxArray.length == 3 && SWAjax(ajaxArray,val)==true)) {
+			if(inputClassValid != null)
+				val.className = inputClassValid;
+			if(image == 1 || image == 3)
+				document.getElementById(imageId).innerHTML = swValidImage;
+			else
+				document.getElementById(imageId).innerHTML = "";
+			if(msgClassValid != null)
+				document.getElementById(msgId).className = msgClassValid;
+			if(msgTextValid != null)
+				document.getElementById(msgId).innerHTML = msgTextValid;
+			val.correct = true;
+		}
+		else {
+			if(inputClassNoValid != null)
+				val.className = inputClassNoValid;
+			if(image == 2 || image == 3)
+				document.getElementById(imageId).innerHTML = swNoValidImage;
+			else
+				document.getElementById(imageId).innerHTML = "";
+			if(msgClassNoValid != null)
+				document.getElementById(msgId).className = msgClassNoValid;
+			if(msgTextNoValid != null)
+				document.getElementById(msgId).innerHTML = ajaxArray[3];
+			val.correct = false;
+		}
 	}
 	else {
-		if(inputClassNoValid != "")
+		if(inputClassNoValid != null)
 			val.className = inputClassNoValid;
 		if(image == 2 || image == 3)
 			document.getElementById(imageId).innerHTML = swNoValidImage;
-		if(msgClassNoValid != "")
+		else
+			document.getElementById(imageId).innerHTML = "";
+		if(msgClassNoValid != null)
 			document.getElementById(msgId).className = msgClassNoValid;
-		if(msgTextNoValid != "")
+		if(msgTextNoValid != null)
 			document.getElementById(msgId).innerHTML = msgTextNoValid;
 		val.correct = false;
 	}
 }
 */
 
-function SWLetters(val,sizeMin,sizeMax,inputClassValid,inputClassNoValid,imageId,image,msgId,msgClassValid,msgClassNoValid,msgTextValid,msgTextNoValid,ajaxURL,ajaxParam)
+function SWLetters(val,sizeMin,sizeMax,inputClassValid,inputClassNoValid,imageId,image,msgId,msgClassValid,msgClassNoValid,msgTextValid,msgTextNoValid,ajaxArray)
 {
 	regExLetters = /^[a-zA-Z]+$/;
 	if ((regExLetters.test(val.value) && (sizeMin == null || val.value.length >= sizeMin) && (sizeMax == null || val.value.length <= sizeMax)) || (sizeMin == 0 && val.value.length == 0)) {
+		if(ajaxArray == null || (ajaxArray.length == 3 && SWAjax(ajaxArray,val)==true)) {
+			if(inputClassValid != null)
+				val.className = inputClassValid;
+			if(image == 1 || image == 3)
+				document.getElementById(imageId).innerHTML = swValidImage;
+			else
+				document.getElementById(imageId).innerHTML = "";
+			if(msgClassValid != null)
+				document.getElementById(msgId).className = msgClassValid;
+			if(msgTextValid != null)
+				document.getElementById(msgId).innerHTML = msgTextValid;
+			val.correct = true;
+		}
+		else {
+			if(inputClassNoValid != null)
+				val.className = inputClassNoValid;
+			if(image == 2 || image == 3)
+				document.getElementById(imageId).innerHTML = swNoValidImage;
+			else
+				document.getElementById(imageId).innerHTML = "";
+			if(msgClassNoValid != null)
+				document.getElementById(msgId).className = msgClassNoValid;
+			if(msgTextNoValid != null)
+				document.getElementById(msgId).innerHTML = ajaxArray[3];
+			val.correct = false;
+		}
+	}
+	else {
+		if(inputClassNoValid != null)
+			val.className = inputClassNoValid;
+		if(image == 2 || image == 3)
+			document.getElementById(imageId).innerHTML = swNoValidImage;
+		else
+			document.getElementById(imageId).innerHTML = "";
+		if(msgClassNoValid != null)
+			document.getElementById(msgId).className = msgClassNoValid;
+		if(msgTextNoValid != null)
+			document.getElementById(msgId).innerHTML = msgTextNoValid;
+		val.correct = false;
+	}
+}
+
+function SWAlphanumeric(val,sizeMin,sizeMax,inputClassValid,inputClassNoValid,imageId,image,msgId,msgClassValid,msgClassNoValid,msgTextValid,msgTextNoValid,ajaxArray)
+{
+	regExAlphanumeric = /^[a-zA-Z0-9]+$/;
+	if ((regExAlphanumeric.test(val.value) && (sizeMin == null || val.value.length >= sizeMin) && (sizeMax == null || val.value.length <= sizeMax)) || (sizeMin == 0 && val.value.length == 0)) {
+		if(ajaxArray == null || (ajaxArray.length == 3 && SWAjax(ajaxArray,val)==true)) {
+			if(inputClassValid != null)
+				val.className = inputClassValid;
+			if(image == 1 || image == 3)
+				document.getElementById(imageId).innerHTML = swValidImage;
+			else
+				document.getElementById(imageId).innerHTML = "";
+			if(msgClassValid != null)
+				document.getElementById(msgId).className = msgClassValid;
+			if(msgTextValid != null)
+				document.getElementById(msgId).innerHTML = msgTextValid;
+			val.correct = true;
+		}
+		else {
+			if(inputClassNoValid != null)
+				val.className = inputClassNoValid;
+			if(image == 2 || image == 3)
+				document.getElementById(imageId).innerHTML = swNoValidImage;
+			else
+				document.getElementById(imageId).innerHTML = "";
+			if(msgClassNoValid != null)
+				document.getElementById(msgId).className = msgClassNoValid;
+			if(msgTextNoValid != null)
+				document.getElementById(msgId).innerHTML = ajaxArray[3];
+			val.correct = false;
+		}
+	}
+	else {
+		if(inputClassNoValid != null)
+			val.className = inputClassNoValid;
+		if(image == 2 || image == 3)
+			document.getElementById(imageId).innerHTML = swNoValidImage;
+		else
+			document.getElementById(imageId).innerHTML = "";
+		if(msgClassNoValid != null)
+			document.getElementById(msgId).className = msgClassNoValid;
+		if(msgTextNoValid != null)
+			document.getElementById(msgId).innerHTML = msgTextNoValid;
+		val.correct = false;
+	}
+}
+
+function SWPassword(val,sizeMin,sizeMax,inputClassValid,inputClassNoValid,imageId,image,msgId,msgClassValid,msgClassNoValid,msgTextValid,msgTextNoValid)
+{
+	if ((swRegExPassword.test(val.value) && (sizeMin == null || val.value.length >= sizeMin) && (sizeMax == null || val.value.length <= sizeMax)) || (sizeMin == 0 && val.value.length == 0)) {
 		if(inputClassValid != null)
 			val.className = inputClassValid;
 		if(image == 1 || image == 3)
 			document.getElementById(imageId).innerHTML = swValidImage;
+		else
+			document.getElementById(imageId).innerHTML = "";
 		if(msgClassValid != null)
 			document.getElementById(msgId).className = msgClassValid;
 		if(msgTextValid != null)
@@ -92,6 +203,8 @@ function SWLetters(val,sizeMin,sizeMax,inputClassValid,inputClassNoValid,imageId
 			val.className = inputClassNoValid;
 		if(image == 2 || image == 3)
 			document.getElementById(imageId).innerHTML = swNoValidImage;
+		else
+			document.getElementById(imageId).innerHTML = "";
 		if(msgClassNoValid != null)
 			document.getElementById(msgId).className = msgClassNoValid;
 		if(msgTextNoValid != null)
@@ -100,31 +213,79 @@ function SWLetters(val,sizeMin,sizeMax,inputClassValid,inputClassNoValid,imageId
 	}
 }
 
-function SWAlphanumeric(val)
+function SWRePassword(val,passId,inputClassValid,inputClassNoValid,imageId,image,msgId,msgClassValid,msgClassNoValid,msgTextValid,msgTextNoValid)
 {
-	if (swRegExAlphanumeric.test(val.value)) {
-		alert ("correct");
+	if (document.getElementById(passId).value == val.value) {
+		if(inputClassValid != null)
+			val.className = inputClassValid;
+		if(image == 1 || image == 3)
+			document.getElementById(imageId).innerHTML = swValidImage;
+		else
+			document.getElementById(imageId).innerHTML = "";
+		if(msgClassValid != null)
+			document.getElementById(msgId).className = msgClassValid;
+		if(msgTextValid != null)
+			document.getElementById(msgId).innerHTML = msgTextValid;
+		val.correct = true;
+	}
+	else {
+		if(inputClassNoValid != null)
+			val.className = inputClassNoValid;
+		if(image == 2 || image == 3)
+			document.getElementById(imageId).innerHTML = swNoValidImage;
+		else
+			document.getElementById(imageId).innerHTML = "";
+		if(msgClassNoValid != null)
+			document.getElementById(msgId).className = msgClassNoValid;
+		if(msgTextNoValid != null)
+			document.getElementById(msgId).innerHTML = msgTextNoValid;
+		val.correct = false;
 	}
 }
 
-function SWPassword(val)
+function SWEmail(val,sizeMin,sizeMax,inputClassValid,inputClassNoValid,imageId,image,msgId,msgClassValid,msgClassNoValid,msgTextValid,msgTextNoValid,ajaxArray)
 {
-	if (swRegExAlphanumeric.test(val.value)) {
-		alert ("correct");
+	regExEmail =  /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+	if ((regExEmail.test(val.value) && (sizeMin == null || val.value.length >= sizeMin) && (sizeMax == null || val.value.length <= sizeMax)) || (sizeMin == 0 && val.value.length == 0)) {
+		if(ajaxArray == null || (ajaxArray.length == 3 && SWAjax(ajaxArray,val)==true)) {
+			if(inputClassValid != null)
+				val.className = inputClassValid;
+			if(image == 1 || image == 3)
+				document.getElementById(imageId).innerHTML = swValidImage;
+			else
+				document.getElementById(imageId).innerHTML = "";
+			if(msgClassValid != null)
+				document.getElementById(msgId).className = msgClassValid;
+			if(msgTextValid != null)
+				document.getElementById(msgId).innerHTML = msgTextValid;
+			val.correct = true;
+		}
+		else {
+			if(inputClassNoValid != null)
+				val.className = inputClassNoValid;
+			if(image == 2 || image == 3)
+				document.getElementById(imageId).innerHTML = swNoValidImage;
+			else
+				document.getElementById(imageId).innerHTML = "";
+			if(msgClassNoValid != null)
+				document.getElementById(msgId).className = msgClassNoValid;
+			if(msgTextNoValid != null)
+				document.getElementById(msgId).innerHTML = ajaxArray[3];
+			val.correct = false;
+		}
 	}
-}
-
-function SWRePassword(val)
-{
-	if (swRegExAlphanumeric.test(val.value)) {
-		alert ("correct");
-	}
-}
-
-function SWEmail(val)
-{
-	if (swRegExEmail.test(val.value)) {
-		alert ("correct");
+	else {
+		if(inputClassNoValid != null)
+			val.className = inputClassNoValid;
+		if(image == 2 || image == 3)
+			document.getElementById(imageId).innerHTML = swNoValidImage;
+		else
+			document.getElementById(imageId).innerHTML = "";
+		if(msgClassNoValid != null)
+			document.getElementById(msgId).className = msgClassNoValid;
+		if(msgTextNoValid != null)
+			document.getElementById(msgId).innerHTML = msgTextNoValid;
+		val.correct = false;
 	}
 }
 
@@ -135,4 +296,26 @@ function SWRequiredFields(fields)
 			return false;
 	}
 	return true;
+}
+
+function SWAjax(ajaxArray,val)
+{
+	var xmlhttp;
+	
+	if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+		xmlhttp=new XMLHttpRequest();
+	}
+	else {// code for IE6, IE5
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
+	xmlhttp.onreadystatechange=function()
+	{
+		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+			return xmlhttp.responseText;
+		}
+	}
+	xmlhttp.open("POST",ajaxArray[0],true);
+	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	xmlhttp.send(ajaxArray[1]+"="+val.value);
 }
