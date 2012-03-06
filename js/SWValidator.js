@@ -71,7 +71,7 @@ function SWCustom1(val,sizeMin,sizeMax,inputClassValid,inputClassNoValid,imageId
 			if(msgClassNoValid != null)
 				document.getElementById(msgId).className = msgClassNoValid;
 			if(msgTextNoValid != null)
-				document.getElementById(msgId).innerHTML = ajaxArray[3];
+				document.getElementById(msgId).innerHTML = ajaxArray[2];
 			val.correct = false;
 		}
 	}
@@ -118,7 +118,7 @@ function SWLetters(val,sizeMin,sizeMax,inputClassValid,inputClassNoValid,imageId
 			if(msgClassNoValid != null)
 				document.getElementById(msgId).className = msgClassNoValid;
 			if(msgTextNoValid != null)
-				document.getElementById(msgId).innerHTML = ajaxArray[3];
+				document.getElementById(msgId).innerHTML = ajaxArray[2];
 			val.correct = false;
 		}
 	}
@@ -164,7 +164,7 @@ function SWAlphanumeric(val,sizeMin,sizeMax,inputClassValid,inputClassNoValid,im
 			if(msgClassNoValid != null)
 				document.getElementById(msgId).className = msgClassNoValid;
 			if(msgTextNoValid != null)
-				document.getElementById(msgId).innerHTML = ajaxArray[3];
+				document.getElementById(msgId).innerHTML = ajaxArray[2];
 			val.correct = false;
 		}
 	}
@@ -270,7 +270,7 @@ function SWEmail(val,sizeMin,sizeMax,inputClassValid,inputClassNoValid,imageId,i
 			if(msgClassNoValid != null)
 				document.getElementById(msgId).className = msgClassNoValid;
 			if(msgTextNoValid != null)
-				document.getElementById(msgId).innerHTML = ajaxArray[3];
+				document.getElementById(msgId).innerHTML = ajaxArray[2];
 			val.correct = false;
 		}
 	}
